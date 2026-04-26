@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Happy Birthday My Love — Photo Collage</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Nunito:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --blush: #f2a7b8;
+        --blush-deep: #d4607a;
+        --rose: #b8405a;
+        --rose-dark: #7a1e35;
+        --petal: #fce8ee;
+        --petal-deep: #f7cdd8;
+        --cream: #fdf6f0;
+        --ivory: #fffaf5;
+        --mauve: #c47a8a;
+        --gold: #c8a06a;
+        --gold-light: #e8c890;
+        --text-dark: #3a1a22;
+        --text-mid: #7a3a4a;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #150610;
+        background-image:
+          radial-gradient(
+            ellipse at 20% 20%,
+            rgba(180, 60, 90, 0.18) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse at 80% 80%,
+            rgba(120, 30, 60, 0.15) 0%,
+            transparent 55%
+          );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: "Nunito", sans-serif;
+        padding: 20px 14px;
+        overflow-x: hidden;
+      }
+
+      /* falling petals */
+      .petals-wrap {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .petal-fall {
+        position: absolute;
+        top: -40px;
+        font-size: 18px;
+        opacity: 0;
+        animation: petal-drift linear infinite;
+        filter: drop-shadow(0 0 4px rgba(240, 150, 170, 0.4));
+      }
+      @keyframes petal-drift {
+        0% {
+          transform: translateY(0) rotate(0deg) translateX(0);
+          opacity: 0;
+        }
+        5% {
+          opacity: 0.8;
+        }
+        95% {
+          opacity: 0.4;
+        }
+        100% {
+          transform: translateY(105vh) rotate(540deg) translateX(60px);
+          opacity: 0;
+        }
+      }
+
+      .scene {
+        perspective: 2400px;
+        position: relative;
+        z-index: 1;
+        width: min(580px, 96vw);
+      }
+
+      /* COVER */
+      .cover {
+        position: relative;
+        border-radius: 6px 20px 20px 6px;
+        cursor: pointer;
+        user-select: none;
+        min-height: min(520px, 88vw);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 44px 36px;
+        overflow: hidden;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+        box-shadow:
+          -8px 0 0 #5a1028,
+          -16px 6px 32px rgba(0, 0, 0, 0.7),
+          6px 6px 40px rgba(0, 0, 0, 0.5);
+        background:
+          radial-gradient(
+            ellipse at 30% 20%,
+            rgba(255, 220, 230, 0.12) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 70% 80%,
+            rgba(200, 100, 130, 0.1) 0%,
+            transparent 50%
+          ),
+          linear-gradient(
+            160deg,
+            #3d0e1e 0%,
+            #5c1a2e 35%,
+            #3a0c1a 65%,
+            #2a0810 100%
+          );
+      }
+      .cover:hover {
+        transform: translateY(-4px);
+      }
+      .cover-frame {
+        position: absolute;
+        inset: 16px;
+        border: 1px solid rgba(232, 200, 144, 0.35);
+        border-radius: 10px;
+        pointer-events: none;
+      }
+      .cover-rose-top,
+      .cover-rose-bottom {
+        position: absolute;
+        font-size: clamp(48px, 12vw, 70px);
+        opacity: 0.2;
+        filter: blur(1px);
+        pointer-events: none;
+      }
+      .cover-rose-top {
+        top: 18px;
+        right: 22px;
+        transform: rotate(25deg);
+      }
+      .cover-rose-bottom {
+        bottom: 18px;
+        left: 18px;
+        transform: rotate(-20deg) scaleX(-1);
+      }
+      .cover-corner {
+        position: absolute;
+        color: var(--gold);
+        font-size: 14px;
+        opacity: 0.7;
+      }
+      .cover-corner.tl {
+        top: 24px;
+        left: 24px;
+      }
+      .cover-corner.tr {
+        top: 24px;
+        right: 24px;
+      }
+      .cover-corner.bl {
+        bottom: 24px;
+        left: 24px;
+      }
+      .cover-corner.br {
+        bottom: 24px;
+        right: 24px;
+      }
+      .cover-emblem {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 35% 35%,
+          #f2a7b8,
+          #b8405a 60%,
+          #7a1e35
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        margin-bottom: 20px;
+        box-shadow:
+          0 0 30px rgba(180, 64, 90, 0.6),
+          0 0 70px rgba(180, 64, 90, 0.25);
+        animation: heartbeat 2.4s ease-in-out infinite;
+      }
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        14% {
+          transform: scale(1.1);
+        }
+        28% {
+          transform: scale(1);
+        }
+        42% {
+          transform: scale(1.07);
+        }
+        56% {
+          transform: scale(1);
+        }
+      }
+      .cover-for {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(13px, 3vw, 16px);
+        color: var(--blush);
+        letter-spacing: 0.12em;
+        margin-bottom: 8px;
+        opacity: 0.85;
+      }
+      .cover-title {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: clamp(30px, 8vw, 50px);
+        color: #ffe8f0;
+        text-align: center;
+        line-height: 1.1;
+        text-shadow: 0 2px 24px rgba(242, 167, 184, 0.5);
+        margin-bottom: 8px;
+      }
+      .cover-sub {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(14px, 3.5vw, 20px);
+        color: var(--blush);
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .cover-name-box {
+        background: rgba(255, 220, 230, 0.08);
+        border: 1px solid rgba(232, 200, 144, 0.3);
+        border-radius: 30px;
+        padding: 8px 28px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(17px, 4vw, 24px);
+        font-weight: 300;
+        color: var(--gold-light);
+        letter-spacing: 0.08em;
+        margin-bottom: 26px;
+      }
+      .cover-hint {
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mauve);
+        animation: hint-pulse 2.8s ease-in-out infinite;
+      }
+      @keyframes hint-pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      .spine {
+        position: absolute;
+        left: -12px;
+        top: 0;
+        bottom: 0;
+        width: 12px;
+        background: linear-gradient(to right, #2a0810, #5c1a2e);
+        border-radius: 6px 0 0 6px;
+      }
+
+      /* BOOK OPEN */
+      .book.is-open .cover {
+        animation: flip-open 0.8s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+        pointer-events: none;
+      }
+      @keyframes flip-open {
+        0% {
+          transform: rotateY(0deg);
+          transform-origin: left center;
+          opacity: 1;
+        }
+        60% {
+          transform: rotateY(-140deg);
+          transform-origin: left center;
+          opacity: 0.5;
+        }
+        100% {
+          transform: rotateY(-165deg);
+          transform-origin: left center;
+          opacity: 0;
+          position: absolute;
+        }
+      }
+      .pages-wrap {
+        display: none;
+        position: relative;
+      }
+      .book.is-open .pages-wrap {
+        display: block;
+        animation: pages-appear 0.35s 0.55s ease both;
+      }
+      @keyframes pages-appear {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* INNER CARD */
+      .inner-card {
+        background: var(--ivory);
+        border-radius: 6px 20px 20px 6px;
+        box-shadow:
+          -8px 0 0 #d4b0b8,
+          -18px 6px 36px rgba(0, 0, 0, 0.55),
+          6px 6px 36px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        position: relative;
+      }
+      .inner-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 29px,
+          rgba(180, 120, 140, 0.04) 30px
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .inner-card::before {
+        content: "🌹";
+        position: absolute;
+        font-size: 200px;
+        bottom: -30px;
+        right: -20px;
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px 0;
+        position: relative;
+        z-index: 2;
+      }
+      .nav-btn {
+        background: none;
+        border: 1px solid var(--petal-deep);
+        border-radius: 24px;
+        padding: 5px 16px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+        color: var(--rose);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .nav-btn:hover {
+        background: var(--petal);
+      }
+      .nav-btn:disabled {
+        opacity: 0.25;
+        cursor: default;
+      }
+      .dots {
+        display: flex;
+        gap: 7px;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--petal-deep);
+        transition: all 0.3s;
+      }
+      .dot.on {
+        background: var(--rose);
+        transform: scale(1.35);
+      }
+
+      /* page general */
+      .page {
+        padding: 26px 28px 30px;
+        position: relative;
+        z-index: 1;
+      }
+      .page-sec {
+        display: none;
+      }
+      .page-sec.on {
+        display: block;
+        animation: pg-in 0.4s ease;
+      }
+      @keyframes pg-in {
+        from {
+          opacity: 0;
+          transform: translateX(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* COUNTDOWN MODULE — animated month journey */
+      .countdown-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0 16px;
+        gap: 6px;
+      }
+      .cd-label-top {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(13px, 3vw, 16px);
+        color: var(--mauve);
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      .clock-ring-wrap {
+        position: relative;
+        width: min(200px, 50vw);
+        height: min(200px, 50vw);
+        margin: 8px 0;
+      }
+      .clock-ring-wrap svg {
+        width: 100%;
+        height: 100%;
+      }
+      .ring-bg {
+        fill: none;
+        stroke: #f7cdd8;
+        stroke-width: 6;
+      }
+      .ring-fill {
+        fill: none;
+        stroke: url(#roseGrad);
+        stroke-width: 6;
+        stroke-linecap: round;
+        transform: rotate(-90deg);
+        transform-origin: center;
+        transition: stroke-dashoffset 1s ease;
+      }
+      .clock-inner {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+      }
+      .month-badge {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: clamp(26px, 8vw, 42px);
+        color: var(--rose-dark);
+        line-height: 1;
+        text-align: center;
+      }
+      .month-sub {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 12px;
+        color: var(--mauve);
+        letter-spacing: 0.08em;
+      }
+      .month-steps {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 6px 12px;
+        margin: 16px 0 8px;
+      }
+      .month-step {
+        background: linear-gradient(135deg, #fff0f4, #fde8ee);
+        border: 1px solid var(--petal-deep);
+        border-radius: 60px;
+        padding: 8px 18px;
+        text-align: center;
+        min-width: 80px;
+        box-shadow: 0 2px 10px rgba(180, 64, 90, 0.08);
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+      .month-step.active {
+        border-color: var(--blush-deep);
+        background: linear-gradient(135deg, #ffe4ec, #ffd5e2);
+        box-shadow: 0 8px 20px rgba(210, 90, 120, 0.3);
+        transform: scale(1.05);
+        animation: gentlePulse 1.2s infinite ease;
+      }
+      @keyframes gentlePulse {
+        0%,
+        100% {
+          box-shadow: 0 8px 20px rgba(210, 90, 120, 0.3);
+        }
+        50% {
+          box-shadow:
+            0 0 0 4px rgba(242, 167, 184, 0.6),
+            0 8px 22px rgba(210, 90, 120, 0.4);
+        }
+      }
+      .month-name {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: clamp(14px, 4vw, 18px);
+        color: var(--rose-dark);
+        display: block;
+      }
+      .month-heart {
+        font-size: 12px;
+        color: var(--blush-deep);
+        margin-top: 4px;
+      }
+      .month-bridge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 18px;
+        color: var(--blush);
+        margin: 0 2px;
+      }
+      .arrival-heart {
+        font-size: 48px;
+        animation: gentleBeat 2s infinite;
+        margin: 6px 0;
+      }
+      @keyframes gentleBeat {
+        0%,
+        100% {
+          transform: scale(1);
+          text-shadow: 0 0 0px #f2a7b8;
+        }
+        50% {
+          transform: scale(1.12);
+          text-shadow: 0 0 12px #f2a7b8;
+        }
+      }
+      .cd-message {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(13px, 3.2vw, 16px);
+        color: var(--text-mid);
+        text-align: center;
+        line-height: 1.8;
+        margin-top: 14px;
+        padding: 12px 8px;
+        border-top: 1px dashed var(--petal-deep);
+      }
+
+      /* love letter page */
+      .pg-head {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .pg-icon {
+        font-size: 42px;
+        display: block;
+        margin-bottom: 6px;
+        animation: pop-in 0.5s ease;
+      }
+      @keyframes pop-in {
+        from {
+          transform: scale(0.6);
+          opacity: 0;
+        }
+        70% {
+          transform: scale(1.08);
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .pg-head h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: clamp(18px, 5vw, 26px);
+        color: var(--rose-dark);
+      }
+      .div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 16px 0;
+      }
+      .div::before,
+      .div::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--blush),
+          transparent
+        );
+      }
+      .div span {
+        color: var(--blush-deep);
+        font-size: 14px;
+      }
+      .quote {
+        background: linear-gradient(135deg, #fff0f4, #fde8ee);
+        border-left: 3px solid var(--blush-deep);
+        border-radius: 0 12px 12px 0;
+        padding: 12px 16px 12px 20px;
+        margin: 14px 0;
+        position: relative;
+      }
+      .quote::before {
+        content: "\201C";
+        position: absolute;
+        top: -6px;
+        left: 8px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 48px;
+        color: var(--blush-deep);
+        opacity: 0.3;
+      }
+      .quote p {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(13px, 3.2vw, 15px);
+        color: var(--text-mid);
+        line-height: 1.75;
+        padding-top: 10px;
+      }
+      .quote .attr {
+        font-size: 11px;
+        color: var(--blush-deep);
+        text-align: right;
+        margin-top: 6px;
+        letter-spacing: 0.07em;
+      }
+      .wish {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(13px, 3.2vw, 15.5px);
+        color: var(--text-dark);
+        line-height: 1.95;
+        text-align: center;
+      }
+      .closing {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px dashed var(--petal-deep);
+      }
+      .closing-msg {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(13px, 3.3vw, 17px);
+        color: var(--rose);
+      }
+      .closing-sig {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(18px, 4.5vw, 26px);
+        font-weight: 300;
+        color: var(--text-mid);
+        letter-spacing: 0.06em;
+      }
+
+      /* PAGE 3: PHOTO COLLAGE — pure images, no text */
+      .collage-container {
+        max-height: calc(75vh - 100px);
+        overflow-y: auto;
+        padding-right: 4px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--blush-deep) var(--petal-deep);
+      }
+      .collage-container::-webkit-scrollbar {
+        width: 5px;
+      }
+      .collage-container::-webkit-scrollbar-track {
+        background: var(--petal-deep);
+        border-radius: 10px;
+      }
+      .collage-container::-webkit-scrollbar-thumb {
+        background: var(--blush-deep);
+        border-radius: 10px;
+      }
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 18px 14px;
+        margin: 24px 0 12px;
+      }
+      .memory-card {
+        background: #fffaf5;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow:
+          0 8px 18px rgba(90, 20, 40, 0.08),
+          0 0 0 1px rgba(242, 167, 184, 0.25);
+        transition: all 0.25s ease;
+        cursor: pointer;
+      }
+      .memory-card:hover {
+        transform: translateY(-5px);
+        box-shadow:
+          0 18px 28px rgba(110, 35, 55, 0.15),
+          0 0 0 1px var(--blush);
+      }
+      .memory-photo {
+        aspect-ratio: 1 / 1;
+        background: #fdf0f4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .memory-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+      .memory-card:hover .memory-photo img {
+        transform: scale(1.05);
+      }
+      /* fallback for broken images */
+      .memory-photo img::after {
+        content: "💗";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        background: var(--petal);
+      }
+      .collage-footer {
+        text-align: center;
+        margin: 28px 0 12px;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 14px;
+        color: var(--rose);
+        border-top: 1px dashed var(--petal-deep);
+        padding-top: 20px;
+      }
+      .collage-footer .heart-row {
+        color: #d4607a;
+        font-size: 14px;
+        letter-spacing: 3px;
+        margin-bottom: 6px;
+      }
+      @media (max-width: 480px) {
+        .photo-grid {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: 12px;
+        }
+        .page {
+          padding: 20px 16px 24px;
+        }
+        .month-step {
+          padding: 6px 12px;
+          min-width: 70px;
+        }
+        .month-bridge {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="petals-wrap" id="petals"></div>
+
+    <div class="scene">
+      <div class="book" id="book">
+        <!-- COVER -->
+        <div class="cover" id="cover" onclick="openCard()">
+          <div class="spine"></div>
+          <div class="cover-frame"></div>
+          <div class="cover-rose-top">🌹</div>
+          <div class="cover-rose-bottom">🌹</div>
+          <span class="cover-corner tl">✦</span>
+          <span class="cover-corner tr">✦</span>
+          <span class="cover-corner bl">✦</span>
+          <span class="cover-corner br">✦</span>
+          <div class="cover-emblem">💗</div>
+          <div class="cover-for">for my darling wife</div>
+          <div class="cover-title">Happy<br />Birthday</div>
+          <div class="cover-sub">with all my love</div>
+          <div class="cover-name-box">— SANDE —</div>
+          <div class="cover-hint">✦ tap to open ✦</div>
+        </div>
+
+        <!-- INNER PAGES -->
+        <div class="pages-wrap" id="pagesWrap">
+          <div class="inner-card" id="innerCard">
+            <div class="nav-bar">
+              <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>
+                ← Back
+              </button>
+              <div class="dots" id="dots"></div>
+              <button class="nav-btn" id="nextBtn" onclick="go(1)">
+                Next →
+              </button>
+            </div>
+
+            <!-- PAGE 1: animated month countdown -->
+            <div class="page page-sec on" id="s0">
+              <div class="countdown-wrap">
+                <div class="cd-label-top">
+                  🌸 the romantic calendar toward her day 🌸
+                </div>
+                <div class="clock-ring-wrap">
+                  <svg viewBox="0 0 100 100">
+                    <defs>
+                      <linearGradient
+                        id="roseGrad"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="100%"
+                      >
+                        <stop offset="0%" stop-color="#f2a7b8" />
+                        <stop offset="100%" stop-color="#b8405a" />
+                      </linearGradient>
+                    </defs>
+                    <circle class="ring-bg" cx="50" cy="50" r="44" />
+                    <circle
+                      class="ring-fill"
+                      id="ringFill"
+                      cx="50"
+                      cy="50"
+                      r="44"
+                      stroke-dasharray="276.5"
+                      stroke-dashoffset="207"
+                    />
+                  </svg>
+                  <div class="clock-inner">
+                    <div class="month-badge">April 27</div>
+                    <div class="month-sub">the heart's destination</div>
+                  </div>
+                </div>
+                <div class="month-steps" id="monthStepsContainer">
+                  <div class="month-step" data-month="jan" id="stepJan">
+                    <span class="month-name">January</span>
+                    <div class="month-heart">❄️</div>
+                  </div>
+                  <div class="month-bridge">➡</div>
+                  <div class="month-step" data-month="feb" id="stepFeb">
+                    <span class="month-name">February</span>
+                    <div class="month-heart">🌹</div>
+                  </div>
+                  <div class="month-bridge">➡</div>
+                  <div class="month-step" data-month="mar" id="stepMar">
+                    <span class="month-name">March</span>
+                    <div class="month-heart">🍃</div>
+                  </div>
+                  <div class="month-bridge">➡</div>
+                  <div class="month-step" data-month="apr" id="stepApr">
+                    <span class="month-name">April 27</span>
+                    <div class="month-heart">🎂✨</div>
+                  </div>
+                </div>
+                <div class="arrival-heart">💗🌹💗</div>
+                <div class="cd-message">
+                  January whispered your,<br />
+                  February painted love notes,<br />
+                  March bloomed with promises,<br />
+                  now April 27 shines —<br />
+                  the most radiant day because you exist. 🌹
+                </div>
+              </div>
+            </div>
+
+            <!-- PAGE 2: love letter -->
+            <div class="page page-sec" id="s1">
+              <div class="pg-head">
+                <span class="pg-icon">💌</span>
+                <h2>To the Love of My Life</h2>
+                <div class="tagline">words from the heart</div>
+              </div>
+              <div class="div"><span>❧</span></div>
+              <div class="quote">
+                <p>
+                  I love you not only for what you are, but for what I am when I
+                  am with you.
+                </p>
+                <p class="attr">— Roy Croft</p>
+              </div>
+              <p class="wish">
+                Every single day with you is a gift<br />I could never deserve
+                but am forever grateful for.<br /><br />You are my sunrise, my
+                favourite song,<br />my home — and my greatest adventure. 🌹<br /><br />Happy
+                Birthday, my darling.<br />May this year bring you everything<br />your
+                beautiful heart desires. 💕
+              </p>
+              <div class="div"><span>🌸</span></div>
+              <div class="closing">
+                <p class="closing-msg">Yours completely, now and always —</p>
+                <p class="closing-sig">~ Your Husband 💗 ~</p>
+              </div>
+            </div>
+
+            <!-- PAGE 3: PHOTO COLLAGE with Google Drive images (direct links) -->
+            <div class="page page-sec" id="s2">
+              <div class="pg-head">
+                <span class="pg-icon">📸💗</span>
+                <h2>Frames of Us</h2>
+                <div class="tagline">every image, a memory etched in heart</div>
+              </div>
+              <div class="collage-container">
+                <div class="photo-grid" id="photoGrid">
+                  <!-- All Google Drive images using direct export URLs (file ID extracted) -->
+                  <div class="memory-card">
+                    <div class="memory-photo">
+                      <img
+                        src="https://drive.google.com/uc?export=view&id=1wtedOQVjIMQXqkh66Jezn-yacSWRyqdy"
+                        alt="Memory 1"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="memory-card">
+                    <div class="memory-photo">
+                      <img
+                        src="https://drive.google.com/uc?export=view&id=1QM8G39jgizH0FQLRx-sXCaAX8yZpjHWn"
+                        alt="Memory 2"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="memory-card">
+                    <div class="memory-photo">
+                      <img
+                        src="https://drive.google.com/uc?export=view&id=1DJLtrcYEULgSWo-3C8dN_R_7HKKejxEO"
+                        alt="Memory 3"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="memory-card">
+                    <div class="memory-photo">
+                      <img
+                        src="https://drive.google.com/uc?export=view&id=13I3C0yrfVckqHNzWih3A_oFFRVRmJYHZ"
+                        alt="Memory 4"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="memory-card">
+                    <div class="memory-photo">
+                      <img
+                        src="https://drive.google.com/uc?export=view&id=14OIp1xysXuGstwgREpRpycNF6S56gXCM"
+                        alt="Memory 5"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="memory-card">
+                    <div class="memory-photo">
+                      <img
+                        src="https://drive.google.com/uc?export=view&id=13_3oksEPgibudIHpoIThxuH8C3iQ6o6B"
+                        alt="Memory 6"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div class="memory-card">
+                    <div class="memory-photo">
+                      <img
+                        src="https://drive.google.com/uc?export=view&id=1JtsSl0s2yVIny-sGcfTzrDphUvTn62_q"
+                        alt="Memory 7"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="collage-footer">
+                  <div class="heart-row">♥ ♥ ♥</div>
+                  <p>
+                    each one holds a whisper of our love story. forever yours.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        // falling petals
+        const pw = document.getElementById("petals");
+        ["🌸", "🌹", "🌺", "💮", "🌼"].forEach((p) => {
+          for (let i = 0; i < 6; i++) {
+            const el = document.createElement("div");
+            el.className = "petal-fall";
+            el.textContent = p;
+            el.style.cssText = `left:${Math.random() * 100}%;font-size:${Math.random() * 14 + 10}px;animation-duration:${Math.random() * 14 + 9}s;animation-delay:${Math.random() * 15}s;`;
+            pw.appendChild(el);
+          }
+        });
+
+        // animated month journey
+        const monthSteps = [
+          { id: "stepJan", offset: 0 },
+          { id: "stepFeb", offset: 1 },
+          { id: "stepMar", offset: 2 },
+          { id: "stepApr", offset: 3 },
+        ];
+        let stepIndex = 0;
+        const ringFill = document.getElementById("ringFill");
+        const totalCircum = 276.46;
+        const offsets = [
+          totalCircum * 0.75,
+          totalCircum * 0.5,
+          totalCircum * 0.25,
+          0,
+        ];
+
+        function activateMonth(index) {
+          monthSteps.forEach((step) => {
+            const el = document.getElementById(step.id);
+            if (el) el.classList.remove("active");
+          });
+          const current = monthSteps[index];
+          if (current) {
+            const activeEl = document.getElementById(current.id);
+            if (activeEl) activeEl.classList.add("active");
+          }
+          if (ringFill)
+            ringFill.setAttribute("stroke-dashoffset", offsets[index]);
+        }
+
+        let intervalId = setInterval(() => {
+          stepIndex = (stepIndex + 1) % monthSteps.length;
+          activateMonth(stepIndex);
+        }, 2800);
+        activateMonth(0);
+
+        document.querySelectorAll(".month-step").forEach((step, idx) => {
+          step.addEventListener("click", (e) => {
+            e.stopPropagation();
+            stepIndex = idx;
+            activateMonth(stepIndex);
+            clearInterval(intervalId);
+            intervalId = setInterval(() => {
+              stepIndex = (stepIndex + 1) % monthSteps.length;
+              activateMonth(stepIndex);
+            }, 2800);
+          });
+        });
+
+        // page navigation
+        const TOTAL = 3;
+        let cur = 0;
+        function buildDots() {
+          const dotsDiv = document.getElementById("dots");
+          if (!dotsDiv) return;
+          dotsDiv.innerHTML = "";
+          for (let i = 0; i < TOTAL; i++) {
+            const dot = document.createElement("div");
+            dot.className = "dot" + (i === cur ? " on" : "");
+            dotsDiv.appendChild(dot);
+          }
+        }
+        function showPage(n) {
+          document.querySelectorAll(".page-sec").forEach((s, i) => {
+            s.classList.toggle("on", i === n);
+          });
+          const inner = document.getElementById("innerCard");
+          if (inner) inner.style.background = "";
+          const prev = document.getElementById("prevBtn");
+          const next = document.getElementById("nextBtn");
+          if (prev) prev.disabled = n === 0;
+          if (next) next.disabled = n === TOTAL - 1;
+          buildDots();
+        }
+        window.go = function (dir) {
+          cur = Math.max(0, Math.min(TOTAL - 1, cur + dir));
+          showPage(cur);
+        };
+        window.openCard = function () {
+          const book = document.getElementById("book");
+          if (book.classList.contains("is-open")) return;
+          book.classList.add("is-open");
+          buildDots();
+          function burstConfetti() {
+            const colors = [
+              "#f2a7b8",
+              "#d4607a",
+              "#b8405a",
+              "#e8c890",
+              "#c8a06a",
+              "#fce8ee",
+            ];
+            for (let i = 0; i < 80; i++) {
+              setTimeout(() => {
+                const c = document.createElement("div");
+                c.className = "confetti-party";
+                const size = Math.random() * 10 + 5;
+                c.style.cssText = `position:fixed; top:-12px; left:${Math.random() * 100}vw; background:${colors[Math.floor(Math.random() * colors.length)]}; width:${size}px; height:${size}px; border-radius:${Math.random() > 0.5 ? "50%" : "2px"}; opacity:0; pointer-events:none; z-index:999; animation: confettiFall ${Math.random() * 2 + 2.2}s ease forwards;`;
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 3800);
+              }, i * 28);
+            }
+          }
+          if (!document.querySelector("#confettiKeyframe")) {
+            const sty = document.createElement("style");
+            sty.id = "confettiKeyframe";
+            sty.textContent = `@keyframes confettiFall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(105vh) rotate(720deg); opacity: 0; } }`;
+            document.head.appendChild(sty);
+          }
+          burstConfetti();
+        };
+        showPage(0);
+
+        // gentle click feedback on photo cards
+        document.querySelectorAll(".memory-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            card.style.transform = "scale(0.97)";
+            setTimeout(() => (card.style.transform = ""), 150);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
